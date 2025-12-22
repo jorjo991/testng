@@ -1,0 +1,134 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "array",
+  "minItems": 1,
+  "items": {
+    "type": "object",
+    "required": [
+      "sha",
+      "node_id",
+      "commit",
+      "url",
+      "html_url",
+      "comments_url",
+      "author",
+      "committer",
+      "parents"
+    ],
+    "properties": {
+      "sha": {
+        "type": "string"
+      },
+      "node_id": {
+        "type": "string"
+      },
+      "commit": {
+        "type": "object",
+        "required": [
+          "author",
+          "committer",
+          "message",
+          "tree",
+          "url",
+          "comment_count",
+          "verification"
+        ],
+        "properties": {
+          "author": {
+            "type": "object",
+            "required": ["name", "email", "date"],
+            "properties": {
+              "name": { "type": "string" },
+              "email": { "type": "string" },
+              "date": { "type": "string", "format": "date-time" }
+            }
+          },
+          "committer": {
+            "type": "object",
+            "required": ["name", "email", "date"],
+            "properties": {
+              "name": { "type": "string" },
+              "email": { "type": "string" },
+              "date": { "type": "string", "format": "date-time" }
+            }
+          },
+          "message": {
+            "type": "string"
+          },
+          "tree": {
+            "type": "object",
+            "required": ["sha", "url"],
+            "properties": {
+              "sha": { "type": "string" },
+              "url": { "type": "string" }
+            }
+          },
+          "url": {
+            "type": "string"
+          },
+          "comment_count": {
+            "type": "integer"
+          },
+          "verification": {
+            "type": "object",
+            "required": ["verified", "reason"],
+            "properties": {
+              "verified": { "type": "boolean" },
+              "reason": { "type": "string" },
+              "signature": { "type": ["string", "null"] },
+              "payload": { "type": ["string", "null"] },
+              "verified_at": { "type": ["string", "null"] }
+            }
+          }
+        }
+      },
+      "url": {
+        "type": "string"
+      },
+      "html_url": {
+        "type": "string"
+      },
+      "comments_url": {
+        "type": "string"
+      },
+      "author": {
+        "type": ["object", "null"],
+        "properties": {
+          "login": { "type": "string" },
+          "id": { "type": "integer" },
+          "node_id": { "type": "string" },
+          "avatar_url": { "type": "string" },
+          "url": { "type": "string" },
+          "html_url": { "type": "string" },
+          "type": { "type": "string" },
+          "site_admin": { "type": "boolean" }
+        }
+      },
+      "committer": {
+        "type": ["object", "null"],
+        "properties": {
+          "login": { "type": "string" },
+          "id": { "type": "integer" },
+          "node_id": { "type": "string" },
+          "avatar_url": { "type": "string" },
+          "url": { "type": "string" },
+          "html_url": { "type": "string" },
+          "type": { "type": "string" },
+          "site_admin": { "type": "boolean" }
+        }
+      },
+      "parents": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["sha", "url", "html_url"],
+          "properties": {
+            "sha": { "type": "string" },
+            "url": { "type": "string" },
+            "html_url": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

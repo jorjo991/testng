@@ -1,0 +1,20 @@
+Test Case ID: TC_COMMIT_001
+Title: List repository commits
+Endpoint: /repos/{owner}/{repo}/commits
+HTTP Method: GET
+Description: Verify that repository commits are returned successfully.
+
+Preconditions:
+- Repository exists
+- Repository contains at least one commit
+
+Request:
+GET https://api.github.com/repos/jorjo991/university/commits
+
+Expected Result:
+- HTTP status code 200
+- Response contains commit SHA
+- Response contains commit message and author
+
+Negative / Edge Case:
+- Empty repository returns an empty list

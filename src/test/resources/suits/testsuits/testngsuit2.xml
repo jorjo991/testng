@@ -1,0 +1,25 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Test-Suite">
+    <listeners>
+        <listener class-name="org.solvd.test.listener."></listener>
+    </listeners>
+    <test name="testSuit2">
+        <classes>
+            <class name="org.solvd.test.schooltest.StudentServiceTest">
+                <methods>
+                    <include name="testGetTeacherById"/>
+                    <include name="removesStudentFromClassIfNotPresentTest"/>
+                </methods>
+            </class>
+
+            <class name="org.solvd.test.schooltest.TeacherServiceTest">
+                <methods>
+                    <include name="testGetClassRoomById"/>
+                    <include name=" removePresentedStudentFromClassTest"/>
+                    <include name="testGetTeacherByNameIfNameIsPresented"/>
+                </methods>
+            </class>
+
+        </classes>
+    </test>
+</suite>

@@ -1,0 +1,18 @@
+Test Case ID: TC_ISSUE_001
+Title: List repository issues
+Endpoint: /repos/{owner}/{repo}/issues
+HTTP Method: GET
+Description: Verify that repository issues can be retrieved.
+
+Preconditions:
+- Issues feature is enabled for the repository
+
+Request:
+GET https://api.github.com/repos/jorjo991/university/issues
+
+Expected Result:
+- HTTP status code 200
+- Response contains a list of issues
+
+Negative / Edge Case:
+- If issues are disabled, API returns 404

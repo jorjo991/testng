@@ -1,0 +1,19 @@
+Test Case ID: TC_BRANCH_001
+Title: List repository branches
+Endpoint: /repos/{owner}/{repo}/branches
+HTTP Method: GET
+Description: Verify that all branches of a repository are returned.
+
+Preconditions:
+- Repository exists
+
+Request:
+GET https://api.github.com/repos/jorjo991/university/branches
+
+Expected Result:
+- HTTP status code 200
+- Response contains a list of branches
+- Each branch contains name and commit SHA
+
+Negative / Edge Case:
+- If repository has no branches, empty list is returned

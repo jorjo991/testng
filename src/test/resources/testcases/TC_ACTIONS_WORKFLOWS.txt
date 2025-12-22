@@ -1,0 +1,21 @@
+Test Case ID: TC_REPO_001
+Title: Get repository details
+Endpoint: /repos/{owner}/{repo}/actions/workflows
+HTTP Method: GET
+Description: Verify that repository details can be retrieved successfully.
+
+Preconditions:
+- Repository exists
+- User is authenticated with a valid GitHub token
+
+Request:
+GET https://api.github.com/repos/jorjo991/university/actions/workflows
+
+Expected Result:
+- HTTP status code 200
+- Response contains all workflows
+- Response contains owner information
+- Response contains default branch
+
+Negative / Edge Case:
+- If repository does not exist, API returns 404

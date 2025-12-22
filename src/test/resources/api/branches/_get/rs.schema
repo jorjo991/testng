@@ -1,0 +1,18 @@
+[
+    {
+        "name": "feature",
+        "commit": {
+            "sha": "53c8253272bee583db17e7f19a2c7930e9429225",
+            "url": "https://api.github.com/repos/jorjo991/university/commits/53c8253272bee583db17e7f19a2c7930e9429225"
+        },
+        "protected": false
+    },
+    {
+        "name": "main",
+        "commit": {
+            "sha": "c4e0e39fb71efb9f6052a19f8d99e73a01e8d25a",
+            "url": "https://api.github.com/repos/jorjo991/university/commits/c4e0e39fb71efb9f6052a19f8d99e73a01e8d25a"
+        },
+        "protected": false
+    }
+]
