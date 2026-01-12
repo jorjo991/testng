@@ -1,11 +1,12 @@
-package org.solvd.web.components;
+package org.solvd.web;
 
-import com.zebrunner.carina.utils.common.CommonUtils;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import org.solvd.web.components.SideBar;
+import org.solvd.web.components.TopHeader;
 
 public class HomePage extends AbstractPage {
 
@@ -41,7 +42,6 @@ public class HomePage extends AbstractPage {
     }
 
     public TopHeader topHeader() {
-
         return new TopHeader(driver, body.getElement());
     }
 
@@ -54,14 +54,24 @@ public class HomePage extends AbstractPage {
         searchInput.type(productName);
         ExtendedWebElement clickSearch = findExtendedWebElement(By.xpath("//input[@id='search-submit']"));
         clickSearch.click();
-        CommonUtils.pause(2);
     }
 
     public boolean isProductDisplayed(String productName) {
-        CommonUtils.pause(2);
         return !findExtendedWebElements(
                 By.xpath("//h3[contains(normalize-space(.),'" + productName + "')]")).
                 isEmpty();
+    }
+
+    public ExtendedWebElement getPageLogo() {
+        return pageLogo;
+    }
+
+    public ExtendedWebElement getSearchInput() {
+        return searchInput;
+    }
+
+    public ExtendedWebElement getBody() {
+        return body;
     }
 
 }

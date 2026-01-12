@@ -1,22 +1,23 @@
-package org.solvd.web.components;
+package org.solvd.web;
 
-import com.zebrunner.carina.utils.common.CommonUtils;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import org.solvd.web.components.SideBar;
+import org.solvd.web.components.TopHeader;
 
 public class CartPage extends AbstractPage {
 
     @FindBy(css = "body")
-    ExtendedWebElement cartBody;
+    private ExtendedWebElement cartBody;
 
     @FindBy(xpath = "//textarea[@id='note']")
-    ExtendedWebElement noteField;
+    private ExtendedWebElement noteField;
 
     @FindBy(xpath = "//input[@id='update']")
-    ExtendedWebElement updateCartButton;
+    private ExtendedWebElement updateCartButton;
 
     protected CartPage(WebDriver driver) {
         super(driver);
@@ -32,7 +33,6 @@ public class CartPage extends AbstractPage {
 
     public CartPage openCartPage() {
         openURL("https://sauce-demo.myshopify.com/cart");
-        CommonUtils.pause(2);
         return this;
     }
 
@@ -41,7 +41,6 @@ public class CartPage extends AbstractPage {
         removeButton.assertElementPresent();
         removeButton.scrollTo();
         removeButton.click();
-        CommonUtils.pause(2);
         return this;
     }
 
@@ -55,12 +54,35 @@ public class CartPage extends AbstractPage {
         noteField.scrollTo();
         noteField.type(note);
         updateCartButton.click();
-        CommonUtils.pause(2);
         return this;
     }
 
     public boolean isNoteAdded(String note) {
         ExtendedWebElement addedNote = cartBody.findExtendedWebElement(By.xpath("//textarea[@id='note' and normalize-space(text())='" + note + "']"));
         return addedNote.isElementPresent();
+    }
+
+    public ExtendedWebElement getCartBody() {
+        return cartBody;
+    }
+
+    public void setCartBody(ExtendedWebElement cartBody) {
+        this.cartBody = cartBody;
+    }
+
+    public ExtendedWebElement getNoteField() {
+        return noteField;
+    }
+
+    public void setNoteField(ExtendedWebElement noteField) {
+        this.noteField = noteField;
+    }
+
+    public ExtendedWebElement getUpdateCartButton() {
+        return updateCartButton;
+    }
+
+    public void setUpdateCartButton(ExtendedWebElement updateCartButton) {
+        this.updateCartButton = updateCartButton;
     }
 }

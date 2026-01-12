@@ -8,16 +8,13 @@ import org.openqa.selenium.support.FindBy;
 
 public class SideBar extends AbstractUIObject {
 
-    @FindBy(xpath = "//a[contains(normalize-space(.),'Catalog')]")
+    @FindBy(xpath = ".//a[contains(normalize-space(.),'Catalog')]")
     private ExtendedWebElement catalogLink;
-    @FindBy(xpath = "//a[contains(normalize-space(.),'Home')]")
+
+    @FindBy(xpath = ".//a[contains(normalize-space(.),'Home')]")
     private ExtendedWebElement homeLink;
 
-    protected SideBar(WebDriver driver) {
-        super(driver);
-    }
-
-    protected SideBar(WebDriver driver, SearchContext searchContext) {
+    public SideBar(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
 
@@ -29,6 +26,14 @@ public class SideBar extends AbstractUIObject {
     public void clickHome() {
         homeLink.assertElementPresent();
         homeLink.click();
+    }
+
+    public ExtendedWebElement getCatalogLink() {
+        return catalogLink;
+    }
+
+    public ExtendedWebElement getHomeLink() {
+        return homeLink;
     }
 
 }

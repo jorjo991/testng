@@ -1,16 +1,18 @@
-package org.solvd.web.components;
+package org.solvd.web;
 
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import org.solvd.web.components.SideBar;
+import org.solvd.web.components.TopHeader;
 
 public class CatalogPage extends AbstractPage {
 
     @FindBy(css = "body")
-    ExtendedWebElement catalogPageBody;
+    private ExtendedWebElement catalogPageBody;
 
-    protected CatalogPage(WebDriver driver) {
+    public CatalogPage(WebDriver driver) {
         super(driver);
     }
 
@@ -33,4 +35,11 @@ public class CatalogPage extends AbstractPage {
         return new ProductPage(driver);
     }
 
+    public ExtendedWebElement getCatalogPageBody() {
+        return catalogPageBody;
+    }
+
+    public void setCatalogPageBody(ExtendedWebElement catalogPageBody) {
+        this.catalogPageBody = catalogPageBody;
+    }
 }
