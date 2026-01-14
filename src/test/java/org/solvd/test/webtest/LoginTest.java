@@ -8,9 +8,8 @@ public class LoginTest extends AbstractTest {
 
     @Test
     public void TestLogin() {
-        LoginPage loginPage= new LoginPage(getDriver());
+        LoginPage loginPage = new LoginPage(getDriver());
         loginPage.openURL();
-        loginPage.login("g.ugulava12@gmail.com","kacikaci1234");
-
+        loginPage.login("g.ugulava12@gmail.com", "kacikaci1234");
     }
 }

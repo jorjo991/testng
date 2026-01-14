@@ -2,7 +2,6 @@ package org.solvd.web;
 
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.solvd.web.components.SideBar;
@@ -12,14 +11,19 @@ public class CartPage extends AbstractPage {
 
     @FindBy(css = "body")
     private ExtendedWebElement cartBody;
-
+    @FindBy(xpath = "//a[text()='x']")
+    private ExtendedWebElement removeButton;
+    @FindBy(xpath = "//p[contains(., 'cart is currently empty')]")
+    private ExtendedWebElement cartEmpty;
+    @FindBy(xpath = ".//a[@class='toggle-drawer cart desktop']]")
+    private TopHeader cartTopHeader;
     @FindBy(xpath = "//textarea[@id='note']")
     private ExtendedWebElement noteField;
 
     @FindBy(xpath = "//input[@id='update']")
     private ExtendedWebElement updateCartButton;
 
-    protected CartPage(WebDriver driver) {
+    public CartPage(WebDriver driver) {
         super(driver);
     }
 
@@ -37,16 +41,10 @@ public class CartPage extends AbstractPage {
     }
 
     public CartPage removeProduct() {
-        ExtendedWebElement removeButton = cartBody.findExtendedWebElement(By.xpath("//a[text()='x']"));
         removeButton.assertElementPresent();
         removeButton.scrollTo();
         removeButton.click();
         return this;
-    }
-
-    public boolean isProductInCart(String productName) {
-        return !findExtendedWebElements(By.xpath("//a[contains(normalize-space(.),'" + productName + "')]")).
-                isEmpty();
     }
 
     public CartPage addNote(String note) {
@@ -58,31 +56,11 @@ public class CartPage extends AbstractPage {
     }
 
     public boolean isNoteAdded(String note) {
-        ExtendedWebElement addedNote = cartBody.findExtendedWebElement(By.xpath("//textarea[@id='note' and normalize-space(text())='" + note + "']"));
-        return addedNote.isElementPresent();
+        return noteField.getText().toLowerCase().contains(note.toLowerCase());
     }
 
-    public ExtendedWebElement getCartBody() {
-        return cartBody;
+    public boolean isCartEmpty() {
+        return cartEmpty.isElementPresent();
     }
 
-    public void setCartBody(ExtendedWebElement cartBody) {
-        this.cartBody = cartBody;
-    }
-
-    public ExtendedWebElement getNoteField() {
-        return noteField;
-    }
-
-    public void setNoteField(ExtendedWebElement noteField) {
-        this.noteField = noteField;
-    }
-
-    public ExtendedWebElement getUpdateCartButton() {
-        return updateCartButton;
-    }
-
-    public void setUpdateCartButton(ExtendedWebElement updateCartButton) {
-        this.updateCartButton = updateCartButton;
-    }
 }

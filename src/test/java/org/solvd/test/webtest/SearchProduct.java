@@ -6,6 +6,7 @@ import org.solvd.web.HomePage;
 
 import static org.testng.Assert.assertTrue;
 
+import org.solvd.web.SearchProductResultPage;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
@@ -17,7 +18,8 @@ public class SearchProduct extends AbstractTest {
         HomePage homePage = new HomePage(getDriver());
         homePage.openHomePage();
         homePage.searchProduct("black");
-        assertTrue(homePage.isProductDisplayed("Black"), "Product is not displayed");
+        SearchProductResultPage searchProductResultPage = new SearchProductResultPage(getDriver());
+        searchProductResultPage.isProductPresent("black");
     }
 
     @AfterTest

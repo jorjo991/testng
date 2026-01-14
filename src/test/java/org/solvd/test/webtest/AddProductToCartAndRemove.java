@@ -1,10 +1,8 @@
 package org.solvd.test.webtest;
 
 import com.zebrunner.carina.core.AbstractTest;
-import org.solvd.web.CartPage;
-import org.solvd.web.CatalogPage;
-import org.solvd.web.HomePage;
-import org.solvd.web.ProductPage;
+import com.zebrunner.carina.utils.common.CommonUtils;
+import org.solvd.web.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -16,11 +14,12 @@ public class AddProductToCartAndRemove extends AbstractTest {
         HomePage homePage = new HomePage(getDriver());
         homePage.openHomePage();
         CatalogPage catalogPage = homePage.catalogPage();
-        ProductPage productPage = catalogPage.goToproductPage();
-        productPage = productPage.chooseProduct("Black heels");
+        ProductPage productPage = catalogPage.chooseProduct("Black heels");
         CartPage cartPage = productPage.addProductCart();
         cartPage.openCartPage();
         cartPage.removeProduct();
-        Assert.assertFalse(cartPage.isProductInCart("Black heels"), "Product is not in the cart");
+        SearchProductResultPage searchProductResultPage = new SearchProductResultPage(getDriver());
+        CommonUtils.pause(2);
+        Assert.assertTrue(cartPage.isCartEmpty());
     }
 }

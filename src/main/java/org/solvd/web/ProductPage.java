@@ -14,9 +14,13 @@ public class ProductPage extends AbstractPage {
 
     @FindBy(css = "body")
     private ExtendedWebElement productBody;
+    @FindBy(xpath = "//input[@id='add']")
+    private ExtendedWebElement addToCart;
+    @FindBy(xpath = "//span[@id='cart-target-desktop']")
+    private ExtendedWebElement addedProductNumber;
     private WebDriverWait webDriverWait;
 
-    protected ProductPage(WebDriver driver) {
+    public ProductPage(WebDriver driver) {
         super(driver);
     }
 
@@ -33,13 +37,11 @@ public class ProductPage extends AbstractPage {
     }
 
     public CartPage addProductCart() {
-        ExtendedWebElement addProduct = productBody.findExtendedWebElement(By.xpath("//input[@id='add']"));
-        addProduct.scrollTo();
-        addProduct.click();
+        addToCart.scrollTo();
+        addToCart.click();
         webDriverWait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
         webDriverWait.until(driver -> {
-            String text = findExtendedWebElement(By.xpath("//span[@id='cart-target-desktop']//span")).
-                    getText();
+            String text = addedProductNumber.getText();
             int count = Integer.parseInt(text.replaceAll("[^0-9]", ""));
             return count > 0;
         });

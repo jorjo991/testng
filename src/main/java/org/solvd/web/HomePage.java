@@ -5,6 +5,8 @@ import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.solvd.web.components.SearchFrom;
 import org.solvd.web.components.SideBar;
 import org.solvd.web.components.TopHeader;
 
@@ -13,10 +15,8 @@ public class HomePage extends AbstractPage {
     //logo that says that we on the home page
     @FindBy(xpath = "h1, .logo, .site-header__logo")
     private ExtendedWebElement pageLogo;
-
-    @FindBy(xpath = "//input[@class='search']")
-    private ExtendedWebElement searchInput;
-
+    @FindBy(xpath = "//div[@id='product-search']")
+    private SearchFrom searchFrom;
     @FindBy(css = "body")
     private ExtendedWebElement body;
 
@@ -51,9 +51,7 @@ public class HomePage extends AbstractPage {
     }
 
     public void searchProduct(String productName) {
-        searchInput.type(productName);
-        ExtendedWebElement clickSearch = findExtendedWebElement(By.xpath("//input[@id='search-submit']"));
-        clickSearch.click();
+        searchFrom.searchProduct(productName);
     }
 
     public boolean isProductDisplayed(String productName) {
@@ -64,10 +62,6 @@ public class HomePage extends AbstractPage {
 
     public ExtendedWebElement getPageLogo() {
         return pageLogo;
-    }
-
-    public ExtendedWebElement getSearchInput() {
-        return searchInput;
     }
 
     public ExtendedWebElement getBody() {

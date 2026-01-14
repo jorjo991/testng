@@ -1,17 +1,14 @@
 package org.solvd.web;
 
-import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import org.solvd.web.components.LoginForm;
 
 public class LoginPage extends AbstractPage {
 
-    @FindBy(xpath = "//input[@id='customer_email']")
-    private ExtendedWebElement emailInput;
-    @FindBy(xpath = "//input[@id='customer_password']")
-    private ExtendedWebElement passwordInput;
+    @FindBy(xpath = "//div[@id='page-content']")
+    private LoginForm loginForm;
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -22,12 +19,8 @@ public class LoginPage extends AbstractPage {
     }
 
     public void login(String email, String password) {
-        emailInput.isElementPresent();
-        emailInput.type(email);
-        passwordInput.isElementPresent();
-        passwordInput.type(password);
-        ExtendedWebElement loginButton = findExtendedWebElement(By.xpath("//input[@value='Sign In']"));
-        loginButton.click();
+        loginForm.writePasswordAndEmail(email, password);
+        loginForm.clickSingInButton();
     }
 
 }
